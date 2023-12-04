@@ -1,1 +1,4 @@
 A Jenkinsfile can be written using two types of syntax — Declarative and Scripted.
+Declarative Pipeline is a more recent feature of Jenkins Pipeline which:
+  * Provides richer syntactical features over Scripted Pipeline syntax, and
+  * Is designed to make writing and reading Pipeline code easier.
