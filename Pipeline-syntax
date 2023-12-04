@@ -5,6 +5,7 @@ Declarative Pipeline is a more recent feature of Jenkins Pipeline which:
 
 Durable: Pipelines can survive both planned and unplanned restarts of the Jenkins controller, but freestyle job can't.
 
+PIPELINE CONCEPTS ==
 
 Pipeline - pipeline is a set of definitions that allows you to automate the processes of Continuous Integration (CI) and Continuous Delivery (CD).
 Node - node represents an environment (often a machine or a container) where the steps of a pipeline can be executed.
