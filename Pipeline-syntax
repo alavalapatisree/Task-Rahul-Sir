@@ -11,3 +11,20 @@ Pipeline - pipeline is a set of definitions that allows you to automate the proc
 Node - node represents an environment (often a machine or a container) where the steps of a pipeline can be executed.
 Stage - stage is a phase or section of your overall pipeline, and within each stage, you can define multiple "steps."
 Step - A single task. Fundamentally, a step tells Jenkins what to do at a particular point in time.
+
+
+options {
+    skipStagesAfterUnstable()
+}
+-----If any stage is unstable, then the stages after unstable stage is skipped.
+(Unstable in jenkins means -  stage is completed but some non-critical issues are detected ---Test failures, Code quality Metrics)
+
+A Pipeline can be created in one of the following ways:
+
+1) Through Blue Ocean - after setting up a Pipeline project in Blue Ocean, the Blue Ocean UI helps you write your Pipeline’s Jenkinsfile and commit it to source control.
+2) Through the classic UI - you can enter a basic Pipeline directly in Jenkins through the classic UI.
+3) In SCM - you can write a Jenkinsfile manually, which you can commit to your project’s source control repository.
+
+A Jenkinsfile created using the classic UI is stored by Jenkins itself (within the Jenkins home directory).
+
+env -  The env global variable in Jenkins Pipeline provides access to environment variables, allowing you to retrieve information about the environment in which the pipeline is running.
