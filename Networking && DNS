@@ -18,3 +18,7 @@ If we want to assign with ourslef, we will use static (manually assigned) IP add
 
 ** ip addr add <IP_ADDRESS>/<SUBNET_MASK> dev <INTERFACE_NAME>
 -> command to assign a static IP address to a network interface
+
+4) Now devices can commuincate with each other, we can check by using ping command.
+** ping <IP_ADDRESS>
+5) By using switch, the divices can communicate only under same network.
