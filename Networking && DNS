@@ -21,4 +21,4 @@ If we want to assign with ourslef, we will use static (manually assigned) IP add
 
 4) Now devices can commuincate with each other, we can check by using ping command.
 ** ping <IP_ADDRESS>
-5) By using switch, the divices can communicate only under same network.
+5) Switch can only enable communication within same network.
