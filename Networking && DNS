@@ -4,3 +4,9 @@ Switch -
 
 
 By using ip link command we can see the interfaces of devices
+
+(the term "interfaces" refers to the points of interaction or connections that enable communication and data exchange between devices or between a device and its users.)
+(No, the term "point of interaction" does not specifically refer to an IP address. In the context of devices, a "point of interaction" generally refers to a location or 
+mechanism where interaction occurs, and it can encompass various aspects, such as physical interfaces, user interfaces, or even software interfaces.) 
+
+-> Imagine a USB port on your computer. It's a physical interface that lets you connect a USB device, like a flash drive. The port serves as a bridge for the computer and the flash drive to share data.
