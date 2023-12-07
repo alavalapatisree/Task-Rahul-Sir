@@ -1,0 +1,9 @@
+Symmetric and asymmetric encryption are two techniques used to secure data.
+
+Symmetric encryption 
+-------------------->
+Uses a single key to encrypt and decrypt data. The sender and recipient share the key, which can be a word, phrase, or string of letters, numbers, and symbols.
+
+Asymmetric encryption
+--------------------->
+Uses a pair of keys: a public key for encryption and a private key for decryption. Asymmetric encryption is also known as public key encryption.
