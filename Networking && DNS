@@ -27,3 +27,19 @@ If we want to assign with ourslef, we will use static (manually assigned) IP add
 How does a system in one network can communicate with other system in other network ???
 
 -> A router is a networking device that is commonly used to connect two or more different networks together
+To a router 2 networks are assigned, then the router will have 2 different IP addresses. If there are three, then it will get 3 IP addresses.
+
+By using router we are connected 2 different networks. In one network we have stsyem A,B and in other network we have system C,D..
+Now I want to system B to communicate with system C. but the router won't know where to forward the packets.
+
+
+How does a system in one network can communicate with other system in other network ???
+1) first we need to connect both networks to a router.
+2) we need to update the routing table, so that router will know where to send the packets.
+3) If you do't update the table, the router may either drop the packet or attempt to forward it along a path that doesn't lead to Network B.
+4) To see those routing configuarion use route command.
+
+* route
+-> to see the routing configurations
+
+
