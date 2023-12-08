@@ -51,3 +51,10 @@ How does a system in one network can communicate with other system in other netw
 -> router_ip_address - when we are saying to a router if 2 networks conneted then the router will have 2 IP address. In that we need to give Network A router IP address   ---- router IP
 
 7) router address od network A (router_ip_address) is called gateway 
+8) run route command to see the table again.
+9) so by this we can send from system B to system C, but if you need to send from system C to B, again we need to update routing table
+
+* ip route add [destination_network_or_host] via [router_ip_address]
+-> destination_network_or_host - IP address of network A    ----- network IP
+-> router_ip_address - when we are saying to a router if 2 networks conneted then the router will have 2 IP address. In that we need to give Network B router IP address   ---- router IP
+
