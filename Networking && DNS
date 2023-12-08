@@ -22,3 +22,8 @@ If we want to assign with ourslef, we will use static (manually assigned) IP add
 4) Now devices can commuincate with each other, we can check by using ping command.
 ** ping <IP_ADDRESS>
 5) Switch can only enable communication within same network.
+
+
+How does a system in one network can communicate with other system in other network ???
+
+-> A router is a networking device that is commonly used to connect two or more different networks together
