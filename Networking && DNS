@@ -61,4 +61,5 @@ How does a system in one network can communicate with other system in other netw
 10) If you want to access internet also we need to update in routing table with ip route add
 
 * ip route add default via <ip address>
+* ip route add 0.0.0.0/0 via <ip address>  (both same)
 -> if you given this in routing table, that, means for that routing ip any destinaion network was not then it will send the packet to the router's interface within its own network.
