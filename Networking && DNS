@@ -40,6 +40,13 @@ How does a system in one network can communicate with other system in other netw
 4) To see those routing configuarion use route command.
 
 * route
--> to see the routing configurations
+-> to see the routing table
 
+
+5) we have 2 types to add configurations to routing table - Static Routing - Dynamic Routing
+6) ip route add is used to manually add a static route to the routing table on a Unix-like operating system. 
+
+* ip route add [destination_network_or_host] via [router_ip_address]
+-> destination_network_or_host - IP address of network B    ----- network IP
+-> router_ip_address - when we are saying to a router if 2 networks conneted then the router will have 2 IP address. In that we need to give Network A router IP address   ---- router IP
 
