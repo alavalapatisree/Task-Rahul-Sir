@@ -17,6 +17,7 @@ mechanism where interaction occurs, and it can encompass various aspects, such a
 If we want to assign with ourslef, we will use static (manually assigned) IP addresses. 
 
 ** ip addr add <IP_ADDRESS>/<SUBNET_MASK> dev <INTERFACE_NAME>
+ip addr add 192.168.1.10/24 dev eth0
 -> command to assign a static IP address to a network interface
 
 4) Now devices can commuincate with each other, we can check by using ping command.
