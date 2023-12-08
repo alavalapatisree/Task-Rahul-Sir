@@ -58,3 +58,7 @@ How does a system in one network can communicate with other system in other netw
 -> destination_network_or_host - IP address of network A    ----- network IP
 -> router_ip_address - when we are saying to a router if 2 networks conneted then the router will have 2 IP address. In that we need to give Network B router IP address   ---- router IP
 
+10) If you want to access internet also we need to update in routing table with ip route add
+
+* ip route add default via <ip address>
+-> if you given this in routing table, that, means for that routing ip any destinaion network was not then it go the default route IP.
