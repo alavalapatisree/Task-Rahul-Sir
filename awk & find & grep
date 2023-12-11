@@ -1,0 +1,40 @@
+awk is a versatile and powerful text processing and pattern scanning language and utility in Unix-like operating systems.
+
+awk '{print $1, $3}' 1.txt 				-> Print specific fields of a file
+awk '$3 > 50 {print $1, $3}' 1.txt 			-> Filter lines based on a condition
+awk '{sum += $2} END {print "sum :", sum} 1.txt 	-> Calculate and print the sum of a column
+awk '/Bob/ {print}' 1.txt 				-> Search for a specific pattern and print matching lines
+awk 'tolower($0) ~ /bob/ {print}' 1.txt 		-> To perform a case-insensitive search with awk, you can use the tolower function to convert the text to lowercase before comparing it with the pattern.
+awk 'toupper($0) ~ /bob/ {print}' 1.txt			-> To perform a case-insensitive search with awk, you can use the toupper function to convert the text to uppercase before comparing it with the pattern.
+
+
+find <directory> <options> <pattern type>
+find aaa/ -name 1.txt
+find aaa/ -iname rupa.txt
+find aaa/ -name "*.txt"
+find aaa/ -type f
+find aaa/ -type d
+find aaa/ -type f -size +1M
+find aaa/ -type f -size -100k
+find aaa/ -user <username>
+find aaa/ -perm u=rw (exact read and write)
+find aaa/ -perm /u=rw (atleast read and write)
+find aaa/ -type f -exec echo {} \;
+find aaa/ -type f -exec rm {} \;
+find aaa/ -maxdepth 1 -type f
+find aaa/ -maxdepth 2 -type f
+find aaa/ -mtime -9 (modified within last 9 days)
+find aaa/ -mtime 9 (modified exactly 9 days ago)
+
+
+grep "pattern" file.txt (Search for a specific pattern in a file:)
+grep "pattern" file1.txt file2.txt (Search for a pattern in multiple files:)
+grep "pattern" /path/to/directory/* ( Search for a pattern in all files in a directory:)
+grep -i "pattern" file.txt (Case-insensitive search:)
+grep -n "pattern" file.txt (Display line numbers of matching lines:)
+grep -o "pattern" file.txt (Display only the matching part of the line:)
+grep -r "pattern" /path/to/directory/ (Search for a pattern in all subdirectories:)
+grep -v "pattern" file.txt (Invert the match (show lines that do not match):)
+grep -c "pattern" file.txt (Count the number of matching lines:)
+grep "pattern" *.txt (Search for a pattern in a specific file type (e.g., all .txt files):)
+grep -I "pattern" * (Search for a pattern, ignoring binary files:)
