@@ -32,4 +32,53 @@ env -  The env global variable in Jenkins Pipeline provides access to environmen
                     def jobName = env.JOB_NAME
                     echo "Build ID: ${buildId}, Job Name: ${jobName}"
 
- params -  the params global variable provides access to all the parameters defined for the pipeline. It exposes these parameters as a read-only map, allowing you to retrieve and use their values within your pipeline script.
+ params -  the params global variable provides access to all the parameters defined for the pipeline. It exposes these parameters as a read-only map, allowing you to retrieve and use their 
+values within your pipeline script.
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
+
+* Jenkinsfile is to be created in root directoy of project.
+* Jenkinsfile without an agent directive, it is not capable of doing any work.
+* stage diective, steps directive also required for a valid declarative pipeline.
+
+checkout scm
+* checkout - this is used to checkout code from source control.
+* scm - this is a special variable which instructs the checkout step to clone the specific revision.
+
+Jenkinsfile is not a replacement for an existing build tool such as GNU/Make, Maven, Gradle, etc, but rather can be viewed 
+as a glue layer to bind the multiple phases of a project’s development lifecycle (build, test, deploy, etc) together.
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'make'
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+            }
+        }
+    }
+}
+
+* sh 'make'
