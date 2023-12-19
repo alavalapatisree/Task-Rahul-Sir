@@ -100,3 +100,10 @@ make check: Runs the checks or tests specified in the check target of the Makefi
 true : A command that always succeeds, used to ensure that the entire command (make test || true) exits successfully, regardless of the success or failure of the make test command.
 
 In the context of a build script, CI/CD pipeline, or any automated build process, it's a common pattern to include || true after a potentially failing command when you want to ensure that the overall process continues, even if a specific step fails.
+
+
+* junit '**/target/*.xml'
+After running your JUnit tests as part of your Jenkins Pipeline, the testing framework likely generates XML files containing detailed information about the test results.
+The junit step is a Jenkins Pipeline step specifically designed to process JUnit test results. It takes as an argument a file pattern indicating where to find the JUnit XML files.
+The junit step processes the specified JUnit XML files and extracts information about test results.
+The results are then displayed in the Jenkins build dashboard, providing a visual representation of which tests passed, which failed, and any additional details about test failures or errors.
