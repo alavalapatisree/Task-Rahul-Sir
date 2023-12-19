@@ -189,3 +189,46 @@ sh 'printenv': Executes the shell command printenv, which prints the environment
 An environment directive used in the top-level pipeline block will apply to all steps within the Pipeline.
 An environment directive defined within a stage will only apply the given environment variables to steps within the stage.
 
+
+
+pipeline {
+    agent any
+    environment {
+        // Using returnStdout
+        CC = """${sh(
+                returnStdout: true,
+                script: 'echo "clang"'
+            )}"""
+        // Using returnStatus
+        EXIT_STATUS = """${sh(
+                returnStatus: true,
+                script: 'exit 1'
+            )}"""
+    }
+    stages {
+        stage('Example') {
+            environment {
+                DEBUG_FLAGS = '-g'
+            }
+            steps {
+                sh 'printenv'
+            }
+        }
+    }
+}
+
+returnStdout:
+
+Captures the standard output of the command.
+Useful when you want to capture the output produced by the shell command for further processing or logging.
+returnStatus:
+
+Captures the exit status of the command.
+Useful when you want to determine whether the shell command succeeded or failed based on its exit status.
+
+An agent must be set at the top level of the pipeline. This will fail if agent is set as agent none.
+When using returnStdout a trailing whitespace will be appended to the returned string. Use .trim() to remove this.
+
+
+Credentials::
+Jenkins' declarative Pipeline syntax has the credentials() helper method (used within the environment directive) which supports secret text, username and password, as well as secret file credentials. 
