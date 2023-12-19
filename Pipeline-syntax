@@ -118,7 +118,74 @@ when {
 
 when :  It is used to define conditions under which a stage or block should be executed.
 expression: This specifies that the condition is expressed using a Groovy expression.
+the currentBuild.result variable is used to access the result of the current build. 
 currentBuild.result: currentBuild is a built-in variable in Jenkins that represents the current build. The result property of currentBuild represents the result of the current build.
 == null || currentBuild.result == 'SUCCESS': This is the Groovy expression defining the condition.
 The condition is true (SUCCESS) if the build result is either null (indicating the build is still running) or if the result is 'SUCCESS'.
+
+SUCCESS: The build is considered successful. All stages and tests have passed without any failures or errors.
+
+FAILURE: The build is considered failed. At least one stage or test has failed.
+
+UNSTABLE: The build is considered unstable. This usually indicates that the build was successful, but some tests or quality criteria are not met. 
+
+${YOUR_JENKINS_URL}/pipeline-syntax/globals#env  --- list of environment variables accessible from within Jenkins Pipeline
+
+BUILD_ID
+The current build ID, identical to BUILD_NUMBER for builds created in Jenkins versions 1.597+
+
+BUILD_NUMBER
+The current build number, such as "153"
+
+BUILD_TAG
+String of jenkins-${JOB_NAME}-${BUILD_NUMBER}. Convenient to put into a resource file, a jar file, etc for easier identification
+
+BUILD_URL
+The URL where the results of this build can be found (for example http://buildserver/jenkins/job/MyJobName/17/ )
+
+EXECUTOR_NUMBER
+The unique number that identifies the current executor (among executors of the same machine) performing this build. This is the number you see in the "build executor status", except that the number starts from 0, not 1
+
+JAVA_HOME
+If your job is configured to use a specific JDK, this variable is set to the JAVA_HOME of the specified JDK. When this variable is set, PATH is also updated to include the bin subdirectory of JAVA_HOME
+
+JENKINS_URL
+Full URL of Jenkins, such as https://example.com:port/jenkins/ (NOTE: only available if Jenkins URL set in "System Configuration")
+
+JOB_NAME
+Name of the project of this build, such as "foo" or "foo/bar".
+
+NODE_NAME
+The name of the node the current build is running on. Set to 'master' for the Jenkins controller.
+
+WORKSPACE
+The absolute path of the workspace
+
+* echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+
+
+pipeline {
+    agent any
+    environment {
+        CC = 'clang'
+    }
+    stages {
+        stage('Example') {
+            environment {
+                DEBUG_FLAGS = '-g'
+            }
+            steps {
+                sh 'printenv'
+            }
+        }
+    }
+}
+
+environment: Defines environment variables for the entire pipeline. In this case, it sets the CC variable to 'clang'.
+environment (within 'Example' stage): Defines environment variables specific to the 'Example' stage. It sets the DEBUG_FLAGS variable to '-g'.
+sh 'printenv': Executes the shell command printenv, which prints the environment variables. This step is executed within the 'Example' stage. (cc is global so will also print)
+
+
+An environment directive used in the top-level pipeline block will apply to all steps within the Pipeline.
+An environment directive defined within a stage will only apply the given environment variables to steps within the stage.
 
