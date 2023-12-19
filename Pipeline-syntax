@@ -82,3 +82,14 @@ pipeline {
 }
 
 * sh 'make'
+sh step is used to execute shell commands
+sh 'make' means that the Jenkins pipeline will execute the make command
+the make command reads a file called Makefile to determine how to build and compile a program. The Makefile contains rules and dependencies that specify how different parts of the program depend on each other and how they should be built.
+
+
+* archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+archiveArtifacts: This is a Jenkins Pipeline step used to archive artifacts, making them available for future reference and use.
+artifacts: '**/target/*.jar': This specifies the files or patterns of files to be archived.
+fingerprint: true: This option is set to true to enable fingerprinting for the archived artifacts. Fingerprinting generates a unique identifier (hash) for each version of the artifact based on its content. 
+
+Archiving artifacts is not a substitute for using external artifact repositories such as Artifactory or Nexus and should be considered only for basic reporting and file archival.
