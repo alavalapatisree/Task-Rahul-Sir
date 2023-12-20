@@ -263,3 +263,10 @@ BITBUCKET_COMMON_CREDS - contains a username and a password separated by a colon
 BITBUCKET_COMMON_CREDS_USR - an additional variable containing the username component only.
 
 BITBUCKET_COMMON_CREDS_PSW - an additional variable containing the password component only.
+
+Secret files:
+
+A secret file is a credential which is stored in a file and uploaded to Jenkins. Secret files are used for credentials that are:
+
+* too unwieldy to enter directly into Jenkins, and/or
+* in binary format, such as a GPG file.
