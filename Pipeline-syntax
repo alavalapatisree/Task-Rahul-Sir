@@ -247,4 +247,19 @@ if you try to access like --- echo ' this is my secret text $AWS_ACCESS_KEY_ID' 
 echo " this is my secret text $AWS_ACCESS_KEY_ID"
 
 -> To access any variables in echo we need to use "" not ''.
-Generally try to see the credential is not secure in pipeline.
+Generally try to see the credential is not secure in pipeline. if we use double quotes for credentials Jenkins only returns the value “****” to reduce the risk of secret information being disclosed to the console output and any logs. 
+
+
+Username and password:
+
+environment {
+    BITBUCKET_COMMON_CREDS = credentials('jenkins-bitbucket-common-creds')
+}
+
+this actually sets the following three environment variables:
+
+BITBUCKET_COMMON_CREDS - contains a username and a password separated by a colon in the format username:password.
+
+BITBUCKET_COMMON_CREDS_USR - an additional variable containing the username component only.
+
+BITBUCKET_COMMON_CREDS_PSW - an additional variable containing the password component only.
