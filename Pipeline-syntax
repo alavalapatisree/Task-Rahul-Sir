@@ -232,3 +232,19 @@ When using returnStdout a trailing whitespace will be appended to the returned s
 
 Credentials::
 Jenkins' declarative Pipeline syntax has the credentials() helper method (used within the environment directive) which supports secret text, username and password, as well as secret file credentials. 
+
+credentials('credential ID')
+Secret text:
+
+environment {
+        AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+    }
+
+jenkins-aws-secret-key-id, jenkins-aws-secret-access-key these two are 2 different secret texts.
+
+if you try to access like --- echo ' this is my secret text $AWS_ACCESS_KEY_ID'    It can't access  AWS_ACCESS_KEY_ID value.. so we need to prvide it in double quotes " "
+echo " this is my secret text $AWS_ACCESS_KEY_ID"
+
+-> To access any variables in echo we need to use "" not ''.
+Generally try to see the credential is not secure in pipeline.
