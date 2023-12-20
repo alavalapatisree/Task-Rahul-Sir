@@ -270,3 +270,29 @@ A secret file is a credential which is stored in a file and uploaded to Jenkins.
 
 * too unwieldy to enter directly into Jenkins, and/or
 * in binary format, such as a GPG file.
+
+SSH User Private Key example:
+withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'jenkins-ssh-key-for-abc', \
+                                             keyFileVariable: 'SSH_KEY_FOR_ABC', \
+                                             passphraseVariable: '', \
+                                             usernameVariable: '')]) {
+  // some block
+}
+
+Certificate example:
+withCredentials(bindings: [certificate(aliasVariable: '', \
+                                       credentialsId: 'jenkins-certificate-for-xyz', \
+                                       keystoreVariable: 'CERTIFICATE_FOR_XYZ', \
+                                       passwordVariable: 'XYZ-CERTIFICATE-PASSWORD')]) {
+  // some block
+}
+
+
+String interpolation::
+
+def username = 'Jenkins'
+echo 'Hello Mr. ${username}'
+echo "I said, Hello Mr. ${username}"
+
+Hello Mr. ${username}
+I said, Hello Mr. Jenkins
