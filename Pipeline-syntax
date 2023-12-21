@@ -1,4 +1,4 @@
-A Jenkinsfile can be written using two types of syntax — Declarative and Scripted.
+ A Jenkinsfile can be written using two types of syntax — Declarative and Scripted.
 Declarative Pipeline is a more recent feature of Jenkins Pipeline which:
   * Provides richer syntactical features over Scripted Pipeline syntax, and
   * Is designed to make writing and reading Pipeline code easier.
@@ -370,3 +370,50 @@ stash step in a Jenkins Pipeline is used to archive and stash files for later us
 includes: '**/target/*.jar': Specifies the files to include in the stash. 
 name: 'app': Specifies a name for the stash. In this case, the stash is named 'app'. 
 you can use the unstash step to retrieve and unarchive the files.
+
+
+Optional step arguments:
+
+
+git url: 'git://example.com/amazing-project.git', branch: 'master'
+git([url: 'git://example.com/amazing-project.git', branch: 'master'])
+
+sh 'echo hello' /* short form  */
+sh([script: 'echo hello'])  /* long form */
+
+both ways are correct.. based on situation we can use.
+
+Parallel execution:
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Parallel Stage') {
+            parallel {
+                stage('Parallel Stage 1') {
+                    steps {
+                        echo 'Running Parallel Stage 1'
+                    }
+                }
+                stage('Parallel Stage 2') {
+                    steps {
+                        echo 'Running Parallel Stage 2'
+                    }
+                }
+                stage('Parallel Stage 3') {
+                    steps {
+                        echo 'Running Parallel Stage 3'
+                    }
+                }
+            }
+        }
+
+        stage('Sequential Stage') {
+            steps {
+                echo 'Running Sequential Stage'
+            }
+        }
+    }
+}
+
