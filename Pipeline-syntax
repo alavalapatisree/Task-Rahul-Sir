@@ -432,7 +432,7 @@ options {
 }
 
 This configuration is specifying preserveStashes(), which means that stashes from all previous builds of the pipeline will be retained.
-
+The default number of runs to preserve is 1, just the most recent completed build.
 2)
 options {
     preserveStashes(buildCount: 5)
