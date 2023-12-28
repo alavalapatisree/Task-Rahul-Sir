@@ -1,1 +1,25 @@
+1) Install docker
+2) clone git repo into local https://github.com/alavalapatisree/Petclinic.git
+3) create dockerfile 
 
+# Use an official Tomcat image as the base image
+FROM tomcat:9-jre11
+
+# Set the working directory in the container
+WORKDIR /usr/local/tomcat/webapps
+
+# Copy the WAR file into the webapps directory
+COPY target/petclinic.war .
+
+# Expose the default Tomcat port
+EXPOSE 8080
+
+# Specify the command to run on container startup
+CMD ["catalina.sh", "run"]
+
+4) we need to convert that java application to .war file... for that we need to use maven (because it is java web application)
+
+5) Install maven in local 
+6) run command ---> mvn clean package  (This will create a war file by compressing java files... after this target/ folder automatically created with war file init)
+
+7) so finally we are copying to tomcat server in deockerfile. last line in docker file is used to run tomcat server when a container is created.
