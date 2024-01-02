@@ -454,3 +454,44 @@ options {
 
 This option prevents concurrent executions of the same pipeline. If a pipeline is already running, a new run will wait for the current one to finish.
 
+
+Using Docker with Pipeline ::
+
+pipeline {
+    agent {
+        docker { image 'node:20.10.0-alpine3.19' }
+    }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
+        }
+    }
+}
+
+When the Pipeline executes, Jenkins will automatically start the specified container and execute the defined steps within.
+
+Workspace synchronization ::
+If it is important to keep the workspace synchronized with other stages, use reuseNode true. Otherwise, a dockerized stage can be run on the same agent or any other agent, but in a temporary workspace.
+
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            agent {
+                docker {
+                    image 'gradle:8.2.0-jdk17-alpine'
+                    // Run the container on the node specified at the
+                    // top-level of the Pipeline, in the same workspace,
+                    // rather than on a new node entirely:
+                    reuseNode true
+                }
+            }
+            steps {
+                sh 'gradle --version'
+            }
+        }
+    }
+}
+
