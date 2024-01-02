@@ -495,3 +495,48 @@ pipeline {
     }
 }
 
+Using multiple containers ::
+
+pipeline {
+    agent none
+    stages {
+        stage('Back-end') {
+            agent {
+                docker { image 'maven:3.9.6-eclipse-temurin-17-alpine' }
+            }
+            steps {
+                sh 'mvn --version'
+            }
+        }
+        stage('Front-end') {
+            agent {
+                docker { image 'node:20.10.0-alpine3.19' }
+            }
+            steps {
+                sh 'node --version'
+            }
+        }
+    }
+}
+
+
+Using a Dockerfile  ::
+For projects requiring a more customized execution environment, Pipeline also supports building and running a container from a Dockerfile in the source repository. 
+In contrast to the previous approach of using an "off-the-shelf" container, using the agent { dockerfile true } syntax builds a new image from a Dockerfile, rather than pulling one from Docker Hub.
+
+Dockerfile
+FROM node:20.10.0-alpine3.19
+
+RUN apk add -U subversion
+
+pipeline {
+    agent { dockerfile true }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+                sh 'svn --version'
+            }
+        }
+    }
+}
