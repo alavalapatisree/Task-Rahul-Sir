@@ -98,3 +98,58 @@ pipeline {
         }
     }
 }
+
+
+email notification ::
+download pulgin 'Email Extension template'
+to go mail which you need to send mails from > manage your google account > security > click on 2step verification > if it is off then turn on > click on App passwords > type app name(ex. smtp.gmail.com) > create > copy that password( it is show only once) -- that is your app password
+manage jenkins > Credentials > Username with password > username - <mailid> alavalapatisree2014@gmail.com > password - <app password from mail> create
+go to Manage jenkins> system > Extended E-mail Notification
+SMTP server - smtp.gmail.com
+SMTP port - 25 or 465 or 587
+click on advanced > provide credentials > click use SSl and Use TLS
+
+for testing purpose::
+go to E-mail Notification 
+SMTP server - smtp.gmail.com
+click on advanced> click on use SMTP Authntication and Use SSL > SMTP port - 25 or 465 or 587 >(optional) Reply -To address <to which maial you want to send mail> rupasri1056@gmail.com
+click on Test configuration by sending test e-mail > Test e-mail recipient (rupasri1056@gmail.com) > click on test configuration
+if mail sent succesfully we can see there.
+
+
+after this we need to write pipeline
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+
+    post {
+        success {
+            emailext subject: "Jenkins Build Notification - Success",
+                      body: "Jenkins build was successful.",
+                      attachLog: true,
+                      to: 'rupasri1056@gmail.com',
+                      from: 'alavalapatisree2014@gmail.com'
+        }
+        unstable {
+            emailext subject: "Jenkins Build Notification - Unstable",
+                      body: "Jenkins build is unstable.",
+                      attachLog: true,
+                      to: 'rupasri1056@gmail.com',
+                      from: 'alavalapatisree2014@gmail.com'
+        }
+        failure {
+            emailext subject: "Jenkins Build Notification - Failure",
+                      body: "Jenkins build has failed. Please check the console log for details.",
+                      attachLog: true,
+                      to: 'rupasri1056@gmail.com',
+                      from: 'alavalapatisree2014@gmail.com'
+        }
+    }
+}
